@@ -1,38 +1,18 @@
-export let data = [
-    {
-        topic: 'air-break',
+import { quizTheme } from "../types/quiz.types"
+export const data: Array<quizTheme> = [
+    {   
+        id:'id1ef0e20c88bf4',
+        topicName: 'air-break',
         quiz:[
             {
-                question:'Hi?',
-                answers:[
-                    {
-                        option:'good',
-                        isCorrect: true
-                    },
-                    {
-                        option:'bad',
-                        isCorrect: false
-                    }
+                question:'How r u?',
+                answer:'good',
+                options:[
+                    'good',
+                    'bad',
+                    'ok'
                 ]
             }
         ]
-    },
-    {
-        topic: 'genreal',
-        quiz:[
-            {
-                question:'Hi?',
-                answers:[
-                    {
-                        option:'good',
-                        isCorrect: true
-                    },
-                    {
-                        option:'bad',
-                        isCorrect: false
-                    }
-                ]
-            }
-        ]
-    },
+    }
 ]

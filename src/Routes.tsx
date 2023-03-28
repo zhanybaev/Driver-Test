@@ -6,7 +6,7 @@ const MainRoutes = ():JSX.Element => {
     return (
        <Routes>
             <Route path='/' element={<HomePage/>}/>
-            <Route path='/quiz/:topic' element={<QuizPage/>} />
+            <Route path='/quiz/:topicName' element={<QuizPage/>} />
        </Routes>
     );
 };
