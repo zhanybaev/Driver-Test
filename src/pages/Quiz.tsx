@@ -3,9 +3,9 @@ import Quiz from '../components/Quiz';
 
 const QuizPage = ():JSX.Element => {
     return (
-        <div>
+        <>
             <Quiz/>
-        </div>
+        </>
     );
 };
 

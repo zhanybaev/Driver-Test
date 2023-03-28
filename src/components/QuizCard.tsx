@@ -1,19 +1,28 @@
 import React from 'react';
-import { quiz } from '../types/quiz.types';
+import { IQuiz } from '../types/quiz.types';
 
 interface IProps{
-    question: quiz
+    question: IQuiz,
+    checkIsCorrect(answer:string):void,
+    showCorrect(answer:string):string
 }
-const QuizCard = ({question}:IProps):JSX.Element => {
-    
+const QuizCard = ({question, checkIsCorrect, showCorrect}:IProps):JSX.Element => {
     return (
         <div>
-            <h2>{question.question}</h2>
-            {
-                question.options.map((item)=>(
-                    <button key={`key-${item}`}>{item}</button>
-                ))
-            }
+            <h2 className='subTitle' >{question.question}</h2>
+            <div className='options'>
+                {
+                    question.options.map((item)=>(
+                        <button 
+                            className={showCorrect(item)}
+                            key={`key-${item}`}
+                            onClick={()=>checkIsCorrect(item)} 
+                        >
+                            {item}
+                        </button>
+                    ))
+                }
+            </div>
         </div>
     );
 };

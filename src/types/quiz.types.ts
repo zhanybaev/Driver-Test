@@ -1,11 +1,11 @@
-export interface quiz {
+export interface IQuiz {
     question: string,
     answer: string,
     options: Array<string>
 }
 
-export interface quizTheme {
+export interface IQuizTheme {
     id:string,
     topicName: string,
-    quiz: Array<quiz>
+    quiz: Array<IQuiz>
 }

@@ -1,3 +1,39 @@
+.headText{
+    text-align: center;
+    font-size: 45px;
+    text-transform: uppercase;
+}
+
+button{
+    border: none;
+    min-height: 30px;
+    min-width: 200px;
+    cursor: pointer;
+}
+
+.subTitle{
+    text-align: center;
+}
+
+.options{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+a{
+    color: black;
+    text-decoration: none !important;
+}
+
+.topicName{
+    text-transform: capitalize;
+}
+
 .wrong{
-    border-radius: red;
+    background: red;
+}
+
+.correct{
+    background: green;
+    color: white;
 }

@@ -1,16 +1,25 @@
-import { quizTheme } from "../types/quiz.types"
-export const data: Array<quizTheme> = [
+import { IQuizTheme } from "../types/quiz.types"
+export const data: Array<IQuizTheme> = [
     {   
         id:'id1ef0e20c88bf4',
         topicName: 'air-break',
         quiz:[
             {
-                question:'How r u?',
-                answer:'good',
+                question:'Атын ким',
+                answer:'Мирлан',
                 options:[
-                    'good',
-                    'bad',
-                    'ok'
+                    'Дан',
+                    'Мирлан',
+                    'Чыпа батыр'
+                ]
+            },
+            {
+                question:'Жашынар канчада',
+                answer:'44',
+                options:[
+                    '44',
+                    '23',
+                    '12'
                 ]
             }
         ]
