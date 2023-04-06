@@ -1,50 +1,34 @@
-import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { IQuizTheme } from '../types/quiz.types';
+import { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { data } from '../utils/data';
 import QuizCard from './QuizCard';
 
 const Quiz = ():JSX.Element => {
-    const { topicName } = useParams()    
-    const [ currentQuestion, setCurrentQuestion ] = useState<number>(0)
-    const [correctAnswers, setCorrectAnswers] = useState<number>(0)
-    const [modal, setModal] = useState<boolean>(false)
-    const [showIsCorrect, setShowIsCorrect] = useState<boolean>(false)
-    const quiz:IQuizTheme = data.find(item=>item.topicName===topicName) || data[0]
+    const [currentQuestion, setCurrentQuestion] = useState(0)
+    const [score, setScore] = useState(0) 
+    const { topicName } = useParams()   
+    const quiz = data.find(item=>item.topicName===topicName) || data[0]
+    const question=quiz.questions[currentQuestion]
 
-    const checkIsCorrect = (answer:string) => {
-        if(quiz.quiz[currentQuestion].answer===answer){
-            const nextQuestion = currentQuestion + 1
-            setCorrectAnswers((prev)=>prev+1)
-            if(nextQuestion>=quiz.quiz.length)setModal(true)
-            else {
-                setCurrentQuestion(nextQuestion)
-                setShowIsCorrect(false)
-            }
-        }else{
-            setShowIsCorrect(true)
-        }
-    }
+    // const shuffleOptions = useCallback(()=>{
+    //     quiz.questions[currentQuestion].options.sort(()=>Math.random()-0.5)
+    //     console.log('shuffle', quiz.questions[currentQuestion].options);
+    // }, [currentQuestion, quiz.questions])     
 
-    const showCorrect = (answer:string):string => {
-        if(showIsCorrect){
-            if(answer===quiz.quiz[currentQuestion].answer) return 'correct'
-            else return 'wrong'
-        }
-        return ''
-    }
+    // useEffect(()=>{
+        // shuffleOptions()        
+    // }, [currentQuestion])
     
     return (
         <div>
-            <h1 className='headText'>{quiz.topicName}</h1>
-            {
-                modal ? <>Your score is{correctAnswers}</> : (
-                    <QuizCard showCorrect={showCorrect} checkIsCorrect={checkIsCorrect} question={quiz.quiz[currentQuestion]}/>
-                ) 
-            }
-            <Link style={{textAlign:'center', display:'block', marginTop:'100px'}} to='/'>
-                GO TO MENU
-            </Link>
+            <QuizCard 
+                currentQuestion={currentQuestion}
+                setCurrentQuestion={setCurrentQuestion}
+                question={question}
+                score={score}
+                setScore={setScore}
+                limit={quiz.questions.length}
+            />
         </div>
     );
 };

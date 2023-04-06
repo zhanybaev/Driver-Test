@@ -3,7 +3,7 @@ export const data: Array<IQuizTheme> = [
     {   
         id:'id1ef0e20c88bf4',
         topicName: 'air-break',
-        quiz:[
+        questions:[
             {
                 question:"Все машины с воздушными тормозами имеют:",
                 answer:'Манометр давления подаваемого воздуха',
@@ -540,8 +540,8 @@ export const data: Array<IQuizTheme> = [
     },
     {
         id:'id1ef0e20c88bd5',
-        topicName:'Combination-Vehicle',
-        quiz:[
+        topicName:'combination-vehicle',
+        questions:[
             {//! 1
                 question:"После того, как вы соединили кингпин с пятым колесом тягача, вы должны проверить соединение:",
                 answer:'Аккуратно подавая тягач вперёд при включенных тормозах трейлера',

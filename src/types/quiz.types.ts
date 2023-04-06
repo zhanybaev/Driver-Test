@@ -7,5 +7,5 @@ export interface IQuiz {
 export interface IQuizTheme {
     id:string,
     topicName: string,
-    quiz: Array<IQuiz>
+    questions: Array<IQuiz>
 }
