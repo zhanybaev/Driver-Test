@@ -1,33 +1,31 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { data } from '../utils/data';
+import { getProgress } from '../utils/functions';
 import QuizCard from './QuizCard';
 
 const Quiz = ():JSX.Element => {
-    const [currentQuestion, setCurrentQuestion] = useState(0)
-    const [score, setScore] = useState(0) 
     const { topicName } = useParams()   
     const quiz = data.find(item=>item.topicName===topicName) || data[0]
-    const question=quiz.questions[currentQuestion]
+    const [progress, setProgress] = useState(getProgress(quiz.topicName))
+    const question=quiz.questions[progress.currentQuestion]
 
     // const shuffleOptions = useCallback(()=>{
     //     quiz.questions[currentQuestion].options.sort(()=>Math.random()-0.5)
     //     console.log('shuffle', quiz.questions[currentQuestion].options);
     // }, [currentQuestion, quiz.questions])     
 
-    // useEffect(()=>{
-        // shuffleOptions()        
-    // }, [currentQuestion])
     
     return (
         <div>
             <QuizCard 
-                currentQuestion={currentQuestion}
-                setCurrentQuestion={setCurrentQuestion}
+                // currentQuestion={currentQuestion}
+                // setCurrentQuestion={setCurrentQuestion}
+                progress={progress}
+                setProgress={setProgress}
                 question={question}
-                score={score}
-                setScore={setScore}
                 limit={quiz.questions.length}
+                topicName={quiz.topicName}
             />
         </div>
     );

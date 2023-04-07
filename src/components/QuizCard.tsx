@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Card.css'
-import { IQuiz } from '../types/quiz.types';
+import { IProgress, IQuiz } from '../types/quiz.types';
 import { useNavigate } from 'react-router-dom';
+import { updateProgress } from '../utils/functions';
 
 interface IProps{
-    currentQuestion: number, 
-    setCurrentQuestion(callback: (question: number) => number):void,
+    progress:IProgress,
+    setProgress(obj:IProgress): void,
     question: IQuiz,
-    score:number,
-    setScore(callback: (question: number) => number):void,
-    limit: number
+    limit: number,
+    topicName:string
 }
-const QuizCard = ({currentQuestion, setCurrentQuestion, question, setScore, score, limit}:IProps):JSX.Element => {
+const QuizCard = ({ progress, setProgress, question, limit, topicName}:IProps):JSX.Element => {
     const [selected, setSelected] = useState<null | string>(null)
     const [error, setError] = useState<boolean | string>('')
     const navigate = useNavigate()
-
+    
     const handleSelect = (i:string) =>{
         if(selected===i && selected===question.answer){
             return 'select'
@@ -28,25 +28,38 @@ const QuizCard = ({currentQuestion, setCurrentQuestion, question, setScore, scor
 
     const handleCheck = (i:string) =>{
         setSelected(i)
-        if(i===question.answer)setScore((prev)=>prev+1)
+        if(i===question.answer){
+            setProgress({
+                ...progress,
+                score: progress.score + 1
+            })
+        }
         setError(false)   
     }
     
     const handleNext = () => {
-        if(currentQuestion===limit){
+        if(progress.currentQuestion===limit){
             navigate('/result')
         }else if(selected){
-            setCurrentQuestion((prev)=>prev+1)
+            setProgress({
+                ...progress,
+                currentQuestion: progress.currentQuestion + 1
+            })
             setSelected(null)
         }else{
             setError('Please select an option first')
         }
     }
 
+    useEffect(()=>{
+        updateProgress(topicName, progress)
+    }, [progress])
+
     return (
         <div>
-            <h1>Question {currentQuestion+1}</h1>
+            <h1>Question {progress.currentQuestion+1}</h1>
             <h2>{question.question}</h2>
+            <h3>Score {progress.score}</h3>
             <div className="options">
                 {error && <div>{error}</div>}
                 {
@@ -64,7 +77,7 @@ const QuizCard = ({currentQuestion, setCurrentQuestion, question, setScore, scor
                 }
             </div>
             <div className="controls">
-                <button onClick={()=>navigate('/d')} >Quit</button>
+                <button onClick={()=>navigate('/')} >Quit</button>
                 <button onClick={handleNext}>Next question</button>
             </div>
         </div>

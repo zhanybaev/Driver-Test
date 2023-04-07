@@ -9,3 +9,8 @@ export interface IQuizTheme {
     topicName: string,
     questions: Array<IQuiz>
 }
+
+export interface IProgress {
+    currentQuestion: number,
+    score:number
+}
