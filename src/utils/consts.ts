@@ -1,8 +1,8 @@
-import { IQuizTheme } from "../types/quiz.types"
+import { IProgress, IQuizTheme } from "../types/quiz.types"
 export const data: Array<IQuizTheme> = [
     {   
         id:'id1ef0e20c88bf4',
-        topicName: 'air-break',
+        topicName: 'air-breaks',
         questions:[
             {
                 question:"Все машины с воздушными тормозами имеют:",
@@ -633,7 +633,7 @@ export const data: Array<IQuizTheme> = [
             },
             { //!10
                 question:'Перед тем как подъезжать тягачом под трейлер, вы должны выровнять тягач',
-                answer:'Точно по центрутрейлера',
+                answer:'Точно по центру трейлера',
                 options:[
                     'Под углом 12 градусов, к трейлеру',
                     'По кингпину, чтобы подъехать им с водительской стороны',
@@ -963,3 +963,9 @@ export const data: Array<IQuizTheme> = [
         ]
     }
 ]
+
+export const initialProgress:IProgress={
+    currentQuestion: 0,
+    score:0,
+    complete:false
+}

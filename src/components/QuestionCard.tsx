@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './Card.css'
 import { IProgress, IQuiz } from '../types/quiz.types';
 import { useNavigate } from 'react-router-dom';
 import { updateProgress } from '../utils/functions';
@@ -38,8 +37,13 @@ const QuestionCard = ({ progress, setProgress, question, limit, topicName}:IQues
     }
     
     const handleNext = () => {
-        if(progress.currentQuestion===limit){
-            navigate('/result')
+        if(progress.currentQuestion===limit-1){
+            const result = {
+                ...progress,
+                complete:true
+            }
+            updateProgress(topicName, result)
+            navigate(`/result/${topicName}`)
         }else if(selected){
             setProgress({
                 ...progress,

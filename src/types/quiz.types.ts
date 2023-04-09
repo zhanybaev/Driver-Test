@@ -12,5 +12,6 @@ export interface IQuizTheme {
 
 export interface IProgress {
     currentQuestion: number,
-    score:number
+    score:number,
+    complete: boolean
 }

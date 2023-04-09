@@ -147,3 +147,13 @@ a{
         font-weight: bold;
     }
 }
+
+.select{
+    background-color: green;
+    color: white;
+}
+
+.wrong{
+    background-color: red;
+    color: white;
+}

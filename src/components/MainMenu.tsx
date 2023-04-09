@@ -1,4 +1,4 @@
-import { data } from '../utils/data'
+import { data } from '../utils/consts'
 import QuizCard from './QuizCard';
 
 const MainMenu = ():JSX.Element => {    

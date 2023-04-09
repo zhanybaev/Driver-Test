@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { data } from '../utils/data';
+import { data } from '../utils/consts';
 import { getProgress } from '../utils/functions';
 import QuestionCard from './QuestionCard';
 
