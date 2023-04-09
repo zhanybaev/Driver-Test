@@ -1,11 +1,8 @@
-import React from 'react';
-import MainMenu from '../components/MainManu';
+import MainMenu from '../components/MainMenu';
 
 const HomePage = ():JSX.Element => {
     return (
-        <>
-            <MainMenu/>
-        </>
+        <MainMenu/>
     );
 };
 
