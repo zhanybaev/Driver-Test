@@ -4,9 +4,14 @@
 }
 
 *{
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
     font-family: "Seconda Soft";
+}
+
+html{
+    background-color: #1f2125;
 }
 
 button{
@@ -136,16 +141,16 @@ a{
     }
 }
 
-@media screen and (max-width:420px){
-    .quizCard__content{
-        flex-wrap: nowrap;
-    }
+@media screen and (max-width:430px){
     .quizCard__link{
         justify-content: start;
     }
     .start-btn {
         font-size: 15px;
         font-weight: bold;
+    }
+    .quizCard__title {
+        font-size: 18px;
     }
 }
 /* ! Quiz Card styles */
@@ -225,6 +230,51 @@ a{
     background: #1b67ae;
     color: white;
     height: 60px;
+    width: 40%;
     font-size: 15px;
     font-weight: 600;
+}
+
+@media screen and (max-width:1060px){
+    .container{
+        width: 50%;
+    }
+    .result__value{
+        padding-left: 10px;
+    }
+    .result__content-text::first-line{
+        font-size: 17px;
+        line-height: 30px;
+    }
+    .result__content-text{
+        font-size: 14px;
+        line-height: 25px;
+    }
+    .navigation-buttons {
+        flex-direction: column;
+        margin-top: 20px;
+        gap: 10px;
+    }
+    .navigation-buttons button{
+        width: 100%;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width:600px){
+    .container{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:400px){
+    .result__content-text{
+        line-height: 20px;
+    }    
+}
+
+@media screen and (max-width:365px){
+    .result__content-text::first-line{
+        font-size: 15px;
+    }
 }
