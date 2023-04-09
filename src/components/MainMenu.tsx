@@ -11,7 +11,7 @@ const MainMenu = ():JSX.Element => {
             <div className="quiz-section">
                 {
                     data.map(item=>(
-                        <QuizCard item={item}/>
+                        <QuizCard key={item.id} item={item}/>
                     ))
                 }
             </div>
