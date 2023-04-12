@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { IProgress, IQuiz } from '../types/quiz.types';
 import { useNavigate } from 'react-router-dom';
 import { updateProgress } from '../utils/functions';
+import ProgressBar from './ProgressBar';
 
 interface IQuestionCardProps{
     progress:IProgress,
@@ -61,7 +62,7 @@ const QuestionCard = ({ progress, setProgress, question, limit, topicName}:IQues
 
     return (
         <div>
-            <h1>Question {progress.currentQuestion+1}</h1>
+            <h1>Question {progress.currentQuestion+1} of {limit}</h1>
             <h2>{question.question}</h2>
             <h3>Score {progress.score}</h3>
             <div className="options">
@@ -82,6 +83,7 @@ const QuestionCard = ({ progress, setProgress, question, limit, topicName}:IQues
             </div>
             <div className="controls">
                 <button onClick={()=>navigate('/')} >Quit</button>
+                <ProgressBar completed={Math.floor(100*(progress.currentQuestion/limit))}/>
                 <button onClick={handleNext}>Next question</button>
             </div>
         </div>

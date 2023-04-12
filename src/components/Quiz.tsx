@@ -11,7 +11,7 @@ const Quiz = ():JSX.Element => {
     const question=quiz.questions[progress.currentQuestion]
     
     return (
-        <div>
+        <div className='quiz'>
             <QuestionCard 
                 progress={progress}
                 setProgress={setProgress}
