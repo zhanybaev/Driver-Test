@@ -3,6 +3,8 @@ import { IProgress, IQuiz } from '../types/quiz.types';
 import { useNavigate } from 'react-router-dom';
 import { updateProgress } from '../utils/functions';
 import ProgressBar from './ProgressBar';
+import Options from './Options';
+const arrowIcon: string = require("../assets/icons/arrow.svg").default;
 
 interface IQuestionCardProps{
     progress:IProgress,
@@ -15,27 +17,6 @@ const QuestionCard = ({ progress, setProgress, question, limit, topicName}:IQues
     const [selected, setSelected] = useState<null | string>(null)
     const [error, setError] = useState<boolean | string>('')
     const navigate = useNavigate()
-    
-    const handleSelect = (i:string) =>{
-        if(selected===i && selected===question.answer){
-            return 'select'
-        }else if(selected===i && selected!==question.answer){
-            return 'wrong'
-        }else if( i===question.answer){
-            return 'select'
-        }
-    }
-
-    const handleCheck = (i:string) =>{
-        setSelected(i)
-        if(i===question.answer){
-            setProgress({
-                ...progress,
-                score: progress.score + 1
-            })
-        }
-        setError(false)   
-    }
     
     const handleNext = () => {
         if(progress.currentQuestion===limit-1){
@@ -51,9 +32,7 @@ const QuestionCard = ({ progress, setProgress, question, limit, topicName}:IQues
                 currentQuestion: progress.currentQuestion + 1
             })
             setSelected(null)
-        }else{
-            setError('Please select an option first')
-        }
+        }else setError('Please select an option first')
     }
 
     useEffect(()=>{
@@ -61,30 +40,27 @@ const QuestionCard = ({ progress, setProgress, question, limit, topicName}:IQues
     }, [progress, topicName])
 
     return (
-        <div>
-            <h1>Question {progress.currentQuestion+1} of {limit}</h1>
-            <h2>{question.question}</h2>
-            <h3>Score {progress.score}</h3>
-            <div className="options">
-                {error && <div>{error}</div>}
-                {
-                    question.options.map((item)=>(
-                        <button
-                            onClick={()=>handleCheck(item)}
-                            className={`singleOption ${selected && handleSelect(item)}`}
-                            key={item}
-                            disabled={!!selected}
-                            style={{margin:'10px'}}
-                        >
-                            {item}
-                        </button>
-                    ))
-                }
-            </div>
-            <div className="controls">
-                <button onClick={()=>navigate('/')} >Quit</button>
-                <ProgressBar completed={Math.floor(100*(progress.currentQuestion/limit))}/>
-                <button onClick={handleNext}>Next question</button>
+        <div className='questionCard'>
+            <div className="questionCard__block">
+                <div className="questionCard__block-question">
+                    <div className='questionNumber'>
+                        Question {progress.currentQuestion+1} of {limit}
+                        <br />
+                        <span className="score">score: {progress.score}</span>
+                    </div>
+                    <h2 className='questionText'>{question.question}</h2>
+                </div>
+                <div className="options">
+                    { question.options.map((item)=>(
+                        <Options key={item} item={item} selected={selected} setSelected={setSelected} question={question} progress={progress} setProgress={setProgress} setError={setError} />
+                    ))}
+                </div>
+                {error && <div className='errorText'>{error}</div>}
+                <div className="controls">
+                    <button onClick={()=>navigate('/')}><img src={arrowIcon} alt="quit icon"/> Quit</button>
+                    <ProgressBar completed={Math.floor(100*(progress.currentQuestion/limit))}/>
+                    <button onClick={handleNext}>Next question <img src={arrowIcon} alt="quit icon"/></button>
+                </div>
             </div>
         </div>
     );

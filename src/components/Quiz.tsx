@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { data } from '../utils/consts';
 import { getProgress } from '../utils/functions';
 import QuestionCard from './QuestionCard';
+import QuizHeader from './QuizHeader';
 
 const Quiz = ():JSX.Element => {
     const { topicName } = useParams()   
@@ -12,7 +13,8 @@ const Quiz = ():JSX.Element => {
     
     return (
         <div className='quiz'>
-            <QuestionCard 
+            <QuizHeader topicName={quiz.topicName}/>
+            <QuestionCard
                 progress={progress}
                 setProgress={setProgress}
                 question={question}

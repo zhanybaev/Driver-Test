@@ -1,4 +1,3 @@
-import React from 'react';
 interface IProgressBar{
     completed:number
 }
@@ -7,34 +6,37 @@ const ProgressBar = ({completed}:IProgressBar) => {
   
     const containerStyles = {
         height: 5,
-        width: '50%',
+        width: '100%',
         backgroundColor: "white",
         borderRadius: 50,
-        margin: 50
+        margin: 50,
       }
     
       const fillerStyles = {
         height: '7px',
         width: `${completed}%`,
         backgroundColor: '#51cf66',
-        borderRadius: '50%',
-        transform: 'translateY(-1px)'
+        borderRadius: '10px',
+        transform:'translateY(-1px)'
     }
   
     const labelStyles = {
-      padding: 5,
       color: 'white',
-      fontWeight: 'bold',
+      padding:5,
+      fontSize:'13px',
+      fontStyle:'italic',
       display:'block',
-      transform: 'translateY(-30px)'
+      transform: 'translateY(-30px)',
+      minWidth:'81px'
     }
-  
+
     return (
-      <div style={containerStyles}>
-        <div style={{...fillerStyles, textAlign:'right'}}></div>
-        <span style={labelStyles}>
-            {`${completed}%`}
-        </span>
+      <div style={{...containerStyles}}>
+        <div style={{...fillerStyles, textAlign:'right'}}>
+            <span style={{...labelStyles, wordBreak:'normal'}}>
+              {`${completed}% complete`}
+            </span>
+        </div>
       </div>
     );
 };
