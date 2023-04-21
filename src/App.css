@@ -15,8 +15,6 @@ html{
 
 button{
     border: none;
-    min-height: 30px;
-    min-width: 200px;
     cursor: pointer;
 }
 
@@ -50,7 +48,7 @@ a{
     font-family: 'Seconda Soft';
     color: white;
 }
-  
+
 .quiz-section{
     width: 100%;
     display: flex;
@@ -108,9 +106,6 @@ a{
 }
 
 @media screen and (max-width:550px){
-    html{
-        overflow: hidden;
-    }
     .quiz-section{
         flex-direction: column;       
         align-items: start;
@@ -271,6 +266,11 @@ a{
 }
 
 /* ! Question Card styles */
+.quiz{
+    position: relative;
+    min-height: 100vh;
+}
+
 .questionCard{
     display: flex;
     justify-content: center;
@@ -291,9 +291,10 @@ a{
     align-items: center;
     background: #3b3c43;
     width: 100%;
-    height: 150px;
+    min-height: 130px;
     border-radius: 10px;
     color: white;
+    padding-bottom: 20px;
 }
 
 .questionNumber{
@@ -331,11 +332,12 @@ a{
 .options button{
     width: 49.5%;
     border-radius: 5px;
-    min-height: 48px;
+    min-height: 60px;
     font-size: 16px;
     font-weight: 600;
     background: #3b3c43;
     color: white;
+    padding: 10px 0;
 }
 
 .select{
@@ -370,6 +372,7 @@ a{
     align-items: center;
     justify-content: center;
     gap: 5px;
+    min-width: 200px;
 }
 
 .controls img{
@@ -378,6 +381,17 @@ a{
 }
 .controls button:first-child img{
     transform: translateY(-2px) scaleX(-1);
+}
+
+.progressBar__label{
+    color: white;
+    padding:5;
+    font-size:13px;
+    font-style:italic;
+    display:block;
+    transform: translateY(-25px);
+    min-width:81px;
+    word-break:normal
 }
 
 .errorText{
@@ -412,12 +426,51 @@ nav{
 
 .nav__item-btn{
     position: absolute;
-    right: 0;
+    right: 5px;
     font-size: 16px;
     font-weight: 600;
     height: 100%;
-    border-radius: 7px 0 0 7px;
+    border-radius: 7px;
     background: #4c5a9e;
     color: white;
     letter-spacing: 2px;
+    min-width: 115px;
+}
+
+@media screen and (max-width:1016px){
+    .progressBar__label{
+        min-width:87px;
+    }
+}
+
+@media screen and (max-width:720px){
+    nav{
+        height: 70px;
+    }
+    .nav__item-title {
+        max-width: 230px;
+        text-align: center;
+    }
+    .controls button{
+        min-width: 150px;
+    }   
+}
+
+
+@media screen and (max-width:660px){
+    .options{
+        flex-direction: column;
+    }
+    .options button{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:620px){
+    .controls button:first-child{
+        min-width: 80px;
+    }
+    .controls button img{
+        width: 15px;
+    }
 }
