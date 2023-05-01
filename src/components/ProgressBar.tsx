@@ -10,6 +10,7 @@ const ProgressBar = ({completed}:IProgressBar) => {
       backgroundColor: "white",
       borderRadius: 50,
       margin: 50,
+      marginTop:65
     }
     
     const fillerStyles = {
@@ -21,7 +22,7 @@ const ProgressBar = ({completed}:IProgressBar) => {
     }
 
     return (
-      <div style={{...containerStyles}}>
+      <div className="progressBar__container" style={containerStyles}>
         <div style={{...fillerStyles, textAlign:'right'}}>
             <span className="progressBar__label">
               {`${completed}% complete`}

@@ -7,6 +7,8 @@ import { setProgress } from "./utils/functions";
 const INIT_STATE:IState={
     quiz:data[0],
     progress:initialProgress,
+    error:false,
+    selected:null
 }
 
 export const quizContext = createContext<IQuizContext>({} as IQuizContext)
@@ -18,6 +20,10 @@ const reducer = (state=INIT_STATE, action:ActionType):IState=>{
             return {...state, quiz:action.payload}
         case "UPDATE_PROGRESS":
             return {...state, progress:action.payload}
+        case "SET_ERROR":
+            return {...state, error:action.payload}
+        case "SET_SELECTED":
+            return {...state, selected:action.payload}
         default:
             return state
     }
@@ -42,13 +48,31 @@ const QuizContextProvider = ({ children }:IQuizContextProvider) => {
         })
     }
 
+    const setError = (errorMessage:string|boolean) => {
+        dispatch({
+            type:"SET_ERROR",
+            payload:errorMessage
+        })
+    }
+
+    const setSelected = (selected:null|string) => {
+        dispatch({
+            type:"SET_SELECTED",
+            payload:selected
+        })
+    }
+
     return (
         <quizContext.Provider
             value={{
                 quiz:state.quiz,
                 progress: state.progress,
+                error:state.error,
+                selected:state.selected,
                 setQuiz,
-                updateProgress
+                updateProgress,
+                setError,
+                setSelected
             }}
         >
             {children}

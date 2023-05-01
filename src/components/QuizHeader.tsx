@@ -1,7 +1,8 @@
+import { useQuiz } from "../QuizContext";
 import { initialProgress } from "../utils/consts";
-import { updateProgress } from "../utils/functions";
 
 const QuizHeader = ({topicName}:{topicName:string}) => {
+    const {updateProgress}=useQuiz()
     return (
         <header>
             <nav>

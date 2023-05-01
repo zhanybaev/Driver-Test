@@ -267,14 +267,18 @@ a{
 
 /* ! Question Card styles */
 .quiz{
-    position: relative;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .questionCard{
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
 }
 
 .questionCard__block{
@@ -351,9 +355,6 @@ a{
 }
 
 .controls{
-    /* position: absolute; */
-    padding-top: 100px;
-    bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -362,6 +363,7 @@ a{
     height: 75px;
     border-radius: 10px;
     padding: 0 10px;
+    margin-top: auto;
 }
 
 .controls button{
@@ -473,5 +475,49 @@ nav{
     }
     .controls button img{
         width: 15px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .progressBar__container{
+        margin: 20px !important;
+    }
+}
+
+@media screen and (max-width:560px) {
+    .progressBar__container{
+        margin: 10px !important;
+        margin-top: 25px !important;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .controls button{
+        font-size: 0;
+        text-indent: -1000em;
+        min-width: 60px;
+    }
+    .controls button img{
+        width: 30px;
+    }
+    .nav__item-btn{
+        font-size: 14px;
+    }
+    nav{
+        justify-content: start;
+    }
+    .nav__item-title{
+        margin-left: 10%;
+        text-align: left;  
+        width: 60%;      
+    }
+    .questionText{
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width:350px) {
+    .nav__item-btn{
+        right: 0;
     }
 }

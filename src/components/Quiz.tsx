@@ -4,6 +4,7 @@ import { getProgress } from '../utils/functions';
 import QuestionCard from './QuestionCard';
 import QuizHeader from './QuizHeader';
 import { useQuiz } from '../QuizContext';
+import ControlBar from './ControlBar';
 
 const Quiz = ():JSX.Element => {
     const { topicName } = useParams()   
@@ -21,8 +22,8 @@ const Quiz = ():JSX.Element => {
             <QuestionCard
                 question={question}
                 limit={quiz.questions.length}
-                topicName={quiz.topicName}
             />
+            <ControlBar limit={quiz.questions.length} topicName={quiz.topicName}/>
         </div>
     );
 };

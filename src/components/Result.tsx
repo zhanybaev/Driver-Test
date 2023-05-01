@@ -1,17 +1,18 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { initialProgress } from '../utils/consts';
-import { getProgress, updateProgress } from '../utils/functions';
+import { getProgress } from '../utils/functions';
+import { useQuiz } from '../QuizContext';
 
 const Result = ():JSX.Element => {
-    const { topicName } = useParams()
-    const { score } = getProgress(topicName)
-    const { complete } = getProgress(topicName)
-    const { currentQuestion: questions } = getProgress(topicName)
+    const {updateProgress, quiz, setSelected} = useQuiz()
+    const topicName  = quiz.topicName
+    const { score, complete, currentQuestion: questions } = getProgress(topicName)
     const navigate = useNavigate()
 
     const endQuiz = (navigateTo:string) => {
         updateProgress(topicName, initialProgress)
+        setSelected(null)
         navigate(navigateTo)
     }
     

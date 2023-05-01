@@ -10,10 +10,6 @@ export const getProgress=(topicName:string='air-breaks'):IProgress=>{
     }
 }
 
-export const updateProgress=(topicName:string='air-breaks', progressObj:IProgress):void=>{
-    sessionStorage.setItem(topicName, JSON.stringify(progressObj))
-}
-
 export const setProgress=(topicName:string='air-breaks', progressObj:IProgress):void=>{
     sessionStorage.setItem(topicName, JSON.stringify(progressObj))
 }
