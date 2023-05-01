@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css'
 import MainRoutes from './Routes';
+import QuizContextProvider from './QuizContext';
 
 function App() {
   return (
-    <div>
+    <QuizContextProvider>
       <MainRoutes/>
-    </div>
+    </QuizContextProvider>
   );
 }
 

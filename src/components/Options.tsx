@@ -1,20 +1,20 @@
-import { IProgress, IQuiz } from "../types/quiz.types";
+import { useQuiz } from "../QuizContext";
+import { IQuiz } from "../types/quiz.types";
 
 interface IOptions{
     item:string,
     selected: null | string, 
     setSelected(selected:string | null):void,
     question: IQuiz,
-    progress:IProgress,
-    setProgress(obj:IProgress): void,
     setError(error:string|boolean):void
 }
 
-const Options = ({item, selected, setSelected, question, progress, setProgress, setError}:IOptions) => {
+const Options = ({item, selected, setSelected, question, setError}:IOptions) => {
+    const { progress, updateProgress, quiz } = useQuiz()
 
     const handleCheck = (i:string) =>{
         setSelected(i)
-        if(i===question.answer)setProgress({
+        if(i===question.answer)updateProgress(quiz.topicName, {
             ...progress,
             score: progress.score + 1
         })

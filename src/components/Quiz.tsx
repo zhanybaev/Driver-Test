@@ -1,22 +1,24 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { data } from '../utils/consts';
 import { getProgress } from '../utils/functions';
 import QuestionCard from './QuestionCard';
 import QuizHeader from './QuizHeader';
+import { useQuiz } from '../QuizContext';
 
 const Quiz = ():JSX.Element => {
     const { topicName } = useParams()   
-    const quiz = data.find(item=>item.topicName===topicName) || data[0]
-    const [progress, setProgress] = useState(getProgress(quiz.topicName))
+    const { progress, updateProgress, quiz, setQuiz } = useQuiz()
     const question=quiz.questions[progress.currentQuestion]
     
+    useEffect(()=>{
+        setQuiz(topicName || 'air-breaks')
+        updateProgress(quiz.topicName, getProgress(quiz.topicName))
+    }, [topicName])
+
     return (
         <div className='quiz'>
             <QuizHeader topicName={quiz.topicName}/>
             <QuestionCard
-                progress={progress}
-                setProgress={setProgress}
                 question={question}
                 limit={quiz.questions.length}
                 topicName={quiz.topicName}

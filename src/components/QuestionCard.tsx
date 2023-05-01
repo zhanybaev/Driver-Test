@@ -1,21 +1,20 @@
-import { useEffect, useState } from 'react';
-import { IProgress, IQuiz } from '../types/quiz.types';
+import { useState } from 'react';
+import { IQuiz } from '../types/quiz.types';
 import { useNavigate } from 'react-router-dom';
-import { updateProgress } from '../utils/functions';
 import ProgressBar from './ProgressBar';
 import Options from './Options';
+import { useQuiz } from '../QuizContext';
 const arrowIcon: string = require("../assets/icons/arrow.svg").default;
 
 interface IQuestionCardProps{
-    progress:IProgress,
-    setProgress(obj:IProgress): void,
     question: IQuiz,
     limit: number,
     topicName:string
 }
-const QuestionCard = ({ progress, setProgress, question, limit, topicName}:IQuestionCardProps):JSX.Element => {
+const QuestionCard = ({ question, limit, topicName}:IQuestionCardProps):JSX.Element => {
     const [selected, setSelected] = useState<null | string>(null)
     const [error, setError] = useState<boolean | string>('')
+    const { progress, updateProgress, } = useQuiz()
     const navigate = useNavigate()
     
     const handleNext = () => {
@@ -27,17 +26,13 @@ const QuestionCard = ({ progress, setProgress, question, limit, topicName}:IQues
             updateProgress(topicName, result)
             navigate(`/result/${topicName}`)
         }else if(selected){
-            setProgress({
+            updateProgress(topicName, {
                 ...progress,
                 currentQuestion: progress.currentQuestion + 1
             })
             setSelected(null)
         }else setError('Please select an option first')
     }
-
-    useEffect(()=>{
-        updateProgress(topicName, progress)
-    }, [progress, topicName])
 
     return (
         <div className='questionCard'>
@@ -52,7 +47,7 @@ const QuestionCard = ({ progress, setProgress, question, limit, topicName}:IQues
                 </div>
                 <div className="options">
                     { question.options.map((item)=>(
-                        <Options key={item} item={item} selected={selected} setSelected={setSelected} question={question} progress={progress} setProgress={setProgress} setError={setError} />
+                        <Options key={item} item={item} selected={selected} setSelected={setSelected} question={question} setError={setError} />
                     ))}
                 </div>
                 {error && <div className='errorText'>{error}</div>}

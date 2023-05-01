@@ -15,3 +15,23 @@ export interface IProgress {
     score:number,
     complete: boolean
 }
+
+export interface IState{
+    quiz:IQuizTheme,
+    progress:IProgress ,
+}
+
+export type ActionType = 
+| { type: 'SET_CURRENT_QUIZ', payload:IQuizTheme}
+| { type: 'UPDATE_PROGRESS', payload:IProgress}
+
+export interface IQuizContextProvider{
+    children: JSX.Element | JSX.Element[]
+}
+
+export interface IQuizContext{
+    quiz:IQuizTheme,
+    progress: IProgress,
+    setQuiz:(topicName:string)=>void,
+    updateProgress:(topicName:string, progressObj:IProgress)=>void
+}
